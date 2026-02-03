@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI Literacy Avatar Assessor (Sandbox)</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="https://aka.ms/csspeech/jsbrowserpackageraw"></script>
+</head>
+<body>
+  <div id="landing" class="landing">
+    <div class="landingCard">
+      <div class="landingBrand">
+        <span class="brandMark"></span>
+        <img class="landingLogo" src="./kyndryl.svg" alt="Kyndryl logo" />
+        <div>
+          <div class="landingTitle">AI Literacy Assessment — Avatar Agent</div>
+          <div class="landingSubtitle">Kyndryl Defense Belgium Program</div>
+        </div>
+      </div>
+      <div class="landingSection">
+        <div class="landingHeading">Welcome</div>
+        <p>This assessment helps understand AI literacy across roles. It is not a performance review and is intended for learning and improvement.</p>
+      </div>
+      <div class="landingSection">
+        <div class="landingHeading">Guidelines</div>
+        <ul class="landingList">
+          <li>Do not share confidential, classified, or personal data.</li>
+          <li>Answer as accurately and honestly as possible.</li>
+          <li>Use examples at a general level (no sensitive specifics).</li>
+          <li>Verify outputs before acting on them in real work.</li>
+        </ul>
+      </div>
+      <div class="landingSection">
+        <label class="consentRow">
+          <input id="consentCheck" type="checkbox" />
+          <span>I understand the guidelines and consent to proceed.</span>
+        </label>
+      </div>
+      <div class="landingSection">
+        <label class="landingLabel" for="accessPassword">Access Password</label>
+        <input id="accessPassword" type="password" placeholder="Enter access password" disabled />
+      </div>
+      <div class="landingActions">
+        <button id="enterBtn" class="primary" disabled>Enter Assessment</button>
+        <div id="landingError" class="landingError"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="app" class="app is-hidden">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brandMark"></span>
+        <div class="brandText">
+          <div class="brandTitle">AI Literacy Assessment — Avatar Agent</div>
+          <div class="brandSubtitle">Kyndryl Defense Belgium Program</div>
+        </div>
+      </div>
+      <div class="brandActions">
+        <button id="startBtn" class="primary">Start Session</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="left">
+        <div id="chat" class="chat"></div>
+        <div class="composer">
+          <textarea id="userText" rows="3" placeholder="Type your answer..."></textarea>
+          <div class="actions">
+            <button id="sendBtn">Send</button>
+            <button id="micBtn">🎤 Voice</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="right">
+        <div class="avatarBox">
+          <div class="avatarFrame">
+            <div class="avatarTitle">Avatar</div>
+            <div class="avatarHeader">
+              <img class="logo left" src="./kyndryl.svg" alt="Kyndryl logo" />
+              <img class="logo right" src="./defense-logo.svg" alt="Defense Belgium logo" />
+            </div>
+            <div id="avatarMount" class="avatarMount">
+              <div id="avatarLoader" class="avatarLoader">
+                <div class="spinner"></div>
+                <div>Loading avatar…</div>
+              </div>
+              <div class="avatarMask" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panelTitle">Scores</div>
+          <div id="scores" class="scoreList"></div>
+          <div class="scoreLegendBlock">
+            <div class="scoreLegendTitle">Score Scale</div>
+            <div class="scoreLegend">0 Unaware • 1 Basic • 2 Practicing • 3 Proficient</div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panelTitle">Report</div>
+          <pre id="report"></pre>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div>© 2026 Kyndryl — Defense Belgium AI Literacy Program</div>
+      <div>Secure • Responsible • Human‑Centered</div>
+    </footer>
+  </div>
+
+  <script type="module" src="./speech-avatar.js"></script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

@@ -21,6 +21,7 @@ jobs:
         run: |
           mkdir -p backend/app/static
           cp -R frontend/* backend/app/static/
+          cp backend/requirements.txt requirements.txt
 
       - name: Install backend dependencies
         run: |

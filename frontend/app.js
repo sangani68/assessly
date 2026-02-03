@@ -4,7 +4,7 @@ let sessionId = null;
 
 const elChat = document.getElementById("chat");
 const elUserText = document.getElementById("userText");
-let backendBaseUrl = "http://localhost:8000";
+let backendBaseUrl = window.location.origin;
 const elScores = document.getElementById("scores");
 const elReport = document.getElementById("report");
 
@@ -46,7 +46,8 @@ function renderScores(scores) {
 }
 
 async function api(path, body) {
-  const url = `${backendBaseUrl.replace(/\/$/, "")}${path}`;
+  const base = backendBaseUrl ? backendBaseUrl.replace(/\/$/, "") : "";
+  const url = `${base}${path}`;
   const r = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -187,10 +188,11 @@ elUserText.addEventListener("keydown", (e) => {
 
 async function loadConfig() {
   try {
-    const r = await fetch(`${backendBaseUrl}/config`);
+    const base = backendBaseUrl ? backendBaseUrl.replace(/\/$/, "") : "";
+    const r = await fetch(`${base}/config`);
     if (!r.ok) throw new Error(`config ${r.status}`);
     const cfg = await r.json();
-    backendBaseUrl = (cfg.backend_url || backendBaseUrl).replace(/\/$/, "");
+    if (cfg.backend_url) backendBaseUrl = cfg.backend_url.replace(/\/$/, "");
     window.__speechKey = cfg.speech_key || "";
     window.__speechRegion = cfg.speech_region || "";
   } catch (err) {
